@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <a href="https://www.baidu.com" title="这是百度">baidu</a>
+        <h1>Hello</h1>
+
+        <button>change user</button>
+
+        <script>
+            let myButton = document.querySelector('button');
+            let useName = document.querySelector('h1');
+
+            function setUserName() {
+                let myName = prompt('Enter your name');
+                if (!myName) {
+                    setUserName();
+                    return;
+                }
+                
+                localStorage.setItem('name', myName);
+                useName.textContent = 'Hello ' + myName;
+            }
+
+            if(!localStorage.getItem('name')) {
+                setUserName();
+            } else {
+                let storedName = localStorage.getItem('name');
+                useName.textContent = 'Hello ' + storedName;
+            }
+
+            // myButton.addEventListener('click',() => {
+            //     setUserName();
+            // })
+            myButton.onclick = () => {
+                setUserName();
+            }
+
+        </script>
+    </body>
+</html>
+
+
